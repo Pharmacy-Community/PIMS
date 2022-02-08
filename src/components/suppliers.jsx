@@ -15,6 +15,7 @@ import {
   Tab,
   NumberField,
   DateField,
+  ReferenceField,
 } from "react-admin";
 
 const SupplierCreate = (props) => (
@@ -58,6 +59,9 @@ export const SupplierShow = (props) => (
         <TextField source="name" />
         <TextField source="address" />
         <TextField source="contact" />
+        <ReferenceField reference="accounts" source="account_id" label="Account Balance">
+        <TextField source="balance"/>
+      </ReferenceField>
       </Tab>
       <Tab label="purchases" path="purchases">
         <SupplierPurchaseList/>
@@ -75,7 +79,9 @@ const SupplierList = (props) => (
       <TextField source="name" />
       <TextField source="address" />
       <TextField source="contact" />
-      <EditButton />
+      <ReferenceField reference="accounts" source="account_id" label="Account Balance">
+        <TextField source="balance"/>
+      </ReferenceField>
     </Datagrid>
   </List>
 );

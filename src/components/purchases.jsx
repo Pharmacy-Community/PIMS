@@ -1,6 +1,5 @@
-import { makeStyles } from "@material-ui/core/styles";
 import {
-    ArrayField,
+  ArrayField,
   ArrayInput,
   Create,
   Datagrid,
@@ -19,22 +18,32 @@ import {
   SimpleShowLayout,
   TextField,
   TextInput,
+  useNotify,
+  useRefresh,
+  useRedirect,
 } from "react-admin";
-
 const PurchaseTitle = ({ record: purchase }) => {
-    return <span>Purchase: {purchase ? purchase.invoice : ""}</span>;
-  };
-
+  return <span>Purchase: {purchase ? purchase.invoice : ""}</span>;
+};
 
 export const PurchaseCreate = (props) => {
+  const notify = useNotify();
+  const refresh = useRefresh();
+  const redirect = useRedirect();
+  const onSuccess = ({ data }) => {
+    notify(`Purchase created Successfully`);
+    redirect(`/purchases`);
+    refresh();
+  };
   return (
-    <Create {...props}>
+    <Create onSuccess={onSuccess} {...props}>
       <SimpleForm>
         <DateInput source="date" />
         <TextInput source="invoice" />
         <ReferenceInput source="supplier_id" reference="suppliers">
           <SelectInput optionText="name" optionValue="id" />
         </ReferenceInput>
+        <NumberInput source="total" />
         <ArrayInput source="items">
           <SimpleFormIterator>
             <ReferenceInput
@@ -58,15 +67,16 @@ export const PurchaseCreate = (props) => {
 
 export const PurchaseEdit = (props) => {
   //   TODO Make form vetfical
-
   return (
-    <Edit title={<PurchaseTitle/>} {...props}>
+    <Edit title={<PurchaseTitle />} {...props}>
       <SimpleForm>
         <DateInput source="date" />
         <TextInput source="invoice" />
         <ReferenceInput source="supplier_id" reference="suppliers">
           <SelectInput optionText="name" optionValue="id" />
         </ReferenceInput>
+        <NumberInput source="total" />
+
         <ArrayInput source="items">
           <SimpleFormIterator>
             <ReferenceInput
