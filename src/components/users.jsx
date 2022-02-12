@@ -13,8 +13,9 @@ import {
   TextField,
   TextInput,
 } from "react-admin";
+import UserIcon from '@material-ui/icons/People';
 
-export const UserCreate = (props) => (
+const UserCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="first_name" />
@@ -28,7 +29,7 @@ export const UserCreate = (props) => (
   </Create>
 );
 
-export const UserEdit = (props) => (
+const UserEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput source="first_name" />
@@ -40,7 +41,7 @@ export const UserEdit = (props) => (
   </Edit>
 );
 
-export const UserList = (props) => (
+const UserList = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="first_name" />
@@ -49,7 +50,7 @@ export const UserList = (props) => (
       <EmailField source="email" />
       <ArrayField source="groups">
         <SingleFieldList>
-            <TextField source="name" />
+          <TextField source="name" />
         </SingleFieldList>
       </ArrayField>
       <BooleanField source="is_active" />
@@ -57,3 +58,11 @@ export const UserList = (props) => (
     </Datagrid>
   </List>
 );
+
+
+export default {
+  create: UserCreate,
+  edit: UserEdit,
+  list: UserList,
+  icon: UserIcon
+}

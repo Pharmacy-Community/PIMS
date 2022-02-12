@@ -21,7 +21,8 @@ const ExpenseCreate = (props) => (
     <SimpleForm>
       <DateInput source="date" />
       <TextInput source="details" />
-      <ReferenceInput label="Account" source="account_id" reference="accounts">
+      <ReferenceInput label="Account" source="account_id" reference="accounts"
+        filter={{ category: "CASH" }}>
         <SelectInput optionText="name" optionValue="id" />
       </ReferenceInput>
       <NumberInput source="amount" />
@@ -29,17 +30,17 @@ const ExpenseCreate = (props) => (
   </Create>
 );
 
-export const ExpenseShow = props => (
-    <Show {...props}>
-        <SimpleShowLayout>
-            <DateField source="date" />
-            <TextField source="details" />
-            <NumberField source="amount" />
-            <ReferenceField source="account_id" reference="accounts">
-                <TextField source="name" />
-            </ReferenceField>
-        </SimpleShowLayout>
-    </Show>
+const ExpenseShow = props => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <DateField source="date" />
+      <TextField source="details" />
+      <NumberField source="amount" />
+      <ReferenceField source="account_id" reference="accounts">
+        <TextField source="name" />
+      </ReferenceField>
+    </SimpleShowLayout>
+  </Show>
 );
 
 // TODO Add daterange filter, account filter, entrant filter
@@ -60,4 +61,9 @@ const ExpenseList = (props) => (
   </List>
 );
 
-export { ExpenseList, ExpenseCreate };
+export default {
+  create: ExpenseCreate,
+  list: ExpenseList,
+  show: ExpenseShow
+}
+

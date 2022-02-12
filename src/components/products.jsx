@@ -1,5 +1,5 @@
 import {
-    ArrayInput,
+  ArrayInput,
   Create,
   Datagrid,
   Edit,
@@ -10,29 +10,29 @@ import {
   TextInput,
 } from "react-admin";
 
-export const ProductCreate = (props) => (
+const ProductCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="generic_name" />
       <ArrayInput source="pack_sizes">
         <SimpleFormIterator>
-          <TextInput source="units" label="Units"/>
-          <TextInput source="sale_price" label="Sale Price"/>
+          <TextInput source="units" label="Units" />
+          <TextInput source="sale_price" label="Sale Price" />
         </SimpleFormIterator>
       </ArrayInput>
     </SimpleForm>
   </Create>
 );
 
-export const ProductEdit = (props) => (
+const ProductEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="generic_name" />
       <ArrayInput source="pack_sizes">
         <SimpleFormIterator>
-          <TextInput source="units" label="Units"/>
+          <TextInput source="units" label="Units" />
           <TextInput source="sale_price" label="Sale Price" />
         </SimpleFormIterator>
       </ArrayInput>
@@ -40,7 +40,7 @@ export const ProductEdit = (props) => (
   </Edit>
 );
 
-export const ProductList = (props) => (
+const ProductList = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="name" />
@@ -48,3 +48,10 @@ export const ProductList = (props) => (
     </Datagrid>
   </List>
 );
+
+
+export default {
+  create: ProductCreate,
+  edit: ProductEdit,
+  list: ProductList
+}

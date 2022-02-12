@@ -1,12 +1,14 @@
 import {
   Datagrid,
   DateField,
+  EditGuesser,
   List,
   ReferenceField,
   TextField,
 } from "react-admin";
 
-export const SaleList = (props) => (
+
+const SaleList = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" />
@@ -17,3 +19,8 @@ export const SaleList = (props) => (
     </Datagrid>
   </List>
 );
+
+export default {
+  list: SaleList,
+  edit: EditGuesser
+}

@@ -26,7 +26,7 @@ const PurchaseTitle = ({ record: purchase }) => {
   return <span>Purchase: {purchase ? purchase.invoice : ""}</span>;
 };
 
-export const PurchaseCreate = (props) => {
+const PurchaseCreate = (props) => {
   const notify = useNotify();
   const refresh = useRefresh();
   const redirect = useRedirect();
@@ -65,7 +65,7 @@ export const PurchaseCreate = (props) => {
   );
 };
 
-export const PurchaseEdit = (props) => {
+const PurchaseEdit = (props) => {
   //   TODO Make form vetfical
   return (
     <Edit title={<PurchaseTitle />} {...props}>
@@ -98,7 +98,7 @@ export const PurchaseEdit = (props) => {
   );
 };
 
-export const PurchaseShow = (props) => (
+const PurchaseShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
       <DateField source="date" />
@@ -150,4 +150,9 @@ const PurchaseList = (props) => (
   </List>
 );
 
-export { PurchaseList };
+export default {
+  create: PurchaseCreate,
+  edit: PurchaseEdit,
+  show: PurchaseShow,
+  list: PurchaseList
+}

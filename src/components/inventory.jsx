@@ -1,7 +1,7 @@
-import { Datagrid, DateField, List, NumberField, ReferenceField, TextField } from "react-admin";
+import { Datagrid, DateField, EditGuesser, List, NumberField, ReferenceField, ShowGuesser, TextField } from "react-admin";
 
 
-export const InventoryList = props => (
+const InventoryList = props => (
     <List {...props}>
         <Datagrid rowClick="edit">
             <ReferenceField source="purchase_id" reference="purchases">
@@ -19,3 +19,10 @@ export const InventoryList = props => (
         </Datagrid>
     </List>
 );
+
+export default {
+    list: InventoryList,
+    show: ShowGuesser,
+    edit: EditGuesser,
+    options: { label: "Inventory" },
+}

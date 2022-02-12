@@ -60,11 +60,11 @@ export const SupplierShow = (props) => (
         <TextField source="address" />
         <TextField source="contact" />
         <ReferenceField reference="accounts" source="account_id" label="Account Balance">
-        <TextField source="balance"/>
-      </ReferenceField>
+          <TextField source="balance" />
+        </ReferenceField>
       </Tab>
       <Tab label="purchases" path="purchases">
-        <SupplierPurchaseList/>
+        <SupplierPurchaseList />
       </Tab>
       <Tab label="Account"></Tab>
     </TabbedShowLayout>
@@ -80,10 +80,15 @@ const SupplierList = (props) => (
       <TextField source="address" />
       <TextField source="contact" />
       <ReferenceField reference="accounts" source="account_id" label="Account Balance">
-        <TextField source="balance"/>
+        <TextField source="balance" />
       </ReferenceField>
     </Datagrid>
   </List>
 );
 
-export { SupplierList, SupplierEdit, SupplierCreate };
+export default {
+  create: SupplierCreate,
+  edit: SupplierEdit,
+  show: SupplierShow,
+  list: SupplierList,
+}

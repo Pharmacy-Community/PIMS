@@ -4,28 +4,18 @@ import drfProvider, {
   jwtTokenAuthProvider,
   fetchJsonWithAuthJWTToken,
 } from "ra-data-django-rest-framework";
-import {
-  SupplierCreate,
-  SupplierEdit,
-  SupplierList,
-  SupplierShow,
-} from "./components/suppliers";
-import { PurchaseCreate, PurchaseEdit, PurchaseList, PurchaseShow } from "./components/purchases";
-import { ExpenseCreate, ExpenseList, ExpenseShow } from "./components/expenses";
-import {
-  CustomerCreate,
-  CustomerEdit,
-  CustomersList,
-} from "./components/customers";
-import { SaleList } from "./components/sales";
-import { AccountCreate, AccountEdit, AccountList } from "./components/accounts";
-import { ProductCreate, ProductEdit, ProductList } from "./components/products";
-import { GroupCreate, GroupEdit, GroupList } from "./groups";
-import { UserCreate, UserEdit, UserList } from "./components/users";
-import { InventoryList } from "./components/inventory";
+import suppliers from "./components/suppliers";
+import purchases, { PurchaseCreate, PurchaseEdit, PurchaseList, PurchaseShow } from "./components/purchases";
+import expenses from "./components/expenses";
+import customers from "./components/customers";
+import sales from "./components/sales";
+import accounts from "./components/accounts";
+import products from "./components/products";
+import groups from "./components/groups";
+import users from "./components/users";
+import inventory from "./components/inventory";
 
-const apiBaseUrl =
-  "https://8000-antoniomande-dashboard-j9ww8rpsthb.ws-eu30.gitpod.io";
+const apiBaseUrl = "http://localhost:7000";
 
 // TODO Add Auth provider
 const authProvider = jwtTokenAuthProvider({
@@ -34,43 +24,17 @@ const authProvider = jwtTokenAuthProvider({
 const dataProvider = drfProvider(apiBaseUrl, fetchJsonWithAuthJWTToken);
 
 const App = () => (
-  <Admin dataProvider={dataProvider}>
-    <Resource name="sales" list={SaleList} />
-    <Resource
-      name="customers"
-      list={CustomersList}
-      edit={CustomerEdit}
-      create={CustomerCreate}
-    />
-    <Resource name="purchases" list={PurchaseList} edit={PurchaseEdit} create={PurchaseCreate} show={PurchaseShow}/>
-    <Resource
-      name="suppliers"
-      list={SupplierList}
-      edit={SupplierEdit}
-      create={SupplierCreate}
-      show={SupplierShow}
-    />
-    <Resource
-      name="products"
-      list={ProductList}
-      edit={ProductEdit}
-      create={ProductCreate}
-    />
-    <Resource name="inventory" options={{label:"Inventory"}} list={InventoryList} show={ShowGuesser} edit={EditGuesser}/>
-    <Resource name="expenses" list={ExpenseList} create={ExpenseCreate} show={ExpenseShow}/>
-    <Resource
-      name="accounts"
-      list={AccountList}
-      edit={AccountEdit}
-      create={AccountCreate}
-    />
-    <Resource name="users" list={UserList} edit={UserEdit} create={UserCreate}/>
-    <Resource
-      name="groups"
-      list={GroupList}
-      edit={GroupEdit}
-      create={GroupCreate}
-    />
+  <Admin dataProvider={dataProvider} authProvider={authProvider}>
+    <Resource name="sales" {...sales} />
+    <Resource name="customers" {...customers} />
+    <Resource name="purchases" {...purchases} />
+    <Resource name="suppliers" {...suppliers} />
+    <Resource name="products" {...products} />
+    <Resource name="inventory" {...inventory} />
+    <Resource name="expenses" {...expenses} />
+    <Resource name="accounts" {...accounts} />
+    <Resource name="users" {...users} />
+    <Resource name="groups" {...groups} />
   </Admin>
 );
 

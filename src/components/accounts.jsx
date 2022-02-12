@@ -12,19 +12,26 @@ import {
   SelectInput,
 } from "react-admin";
 
-export const AccountCreate = (props) => (
+
+
+const AccountCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
       <TextInput source="name" />
       <SelectInput
         source="category"
+        choices={[
+          { id: 'CASH', name: 'CASH' },
+          { id: 'MOBILE MONEY', name: 'MOBILE MONEY' },
+          { id: 'BANK', name: 'BANK' },
+        ]}
       />
       <NumberInput source="balance" />
     </SimpleForm>
   </Create>
 );
 
-export const AccountEdit = (props) => (
+const AccountEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput source="name" />
@@ -32,7 +39,7 @@ export const AccountEdit = (props) => (
   </Edit>
 );
 
-export const AccountList = (props) => (
+const AccountList = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="name" />
@@ -41,3 +48,10 @@ export const AccountList = (props) => (
     </Datagrid>
   </List>
 );
+
+
+export default {
+  create: AccountCreate,
+  edit: AccountEdit,
+  list: AccountList,
+}

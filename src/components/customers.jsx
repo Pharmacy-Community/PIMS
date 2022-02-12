@@ -14,7 +14,7 @@ const CustomerTitle = ({ record: customer }) => {
 };
 
 const CustomerCreate = (props) => (
-  <Create title={CustomerTitle} {...props}>
+  <Create  {...props}>
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="address" />
@@ -46,4 +46,8 @@ const CustomersList = (props) => (
   </List>
 );
 
-export { CustomersList, CustomerEdit, CustomerCreate };
+export default {
+  create: CustomerCreate,
+  edit: CustomerEdit,
+  list: CustomersList
+}

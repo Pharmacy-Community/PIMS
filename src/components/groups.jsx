@@ -7,9 +7,9 @@ import {
     Edit,
     TextInput,
     Create,
-  } from "react-admin";
+} from "react-admin";
 
-export const GroupCreate = props => (
+const GroupCreate = props => (
     <Create {...props}>
         <SimpleForm>
             <TextInput source="name" />
@@ -18,7 +18,7 @@ export const GroupCreate = props => (
 );
 
 
-export const GroupEdit = props => (
+const GroupEdit = props => (
     <Edit {...props}>
         <SimpleForm>
             <TextInput source="name" />
@@ -27,7 +27,7 @@ export const GroupEdit = props => (
 );
 
 
-export const GroupList = props => (
+const GroupList = props => (
     <List {...props}>
         <Datagrid rowClick="edit">
             <TextField source="id" />
@@ -36,3 +36,8 @@ export const GroupList = props => (
     </List>
 );
 
+export default {
+    create: GroupCreate,
+    edit: GroupEdit,
+    list: GroupList
+}
