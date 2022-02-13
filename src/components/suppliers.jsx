@@ -16,7 +16,11 @@ import {
   NumberField,
   DateField,
   ReferenceField,
+  ShowButton,
 } from "react-admin";
+
+import SupplierIcon from '@material-ui/icons/Store';
+
 
 const SupplierCreate = (props) => (
   <Create {...props}>
@@ -33,7 +37,7 @@ const SupplierTitle = ({ record: supplier }) => {
 };
 
 const SupplierEdit = (props) => (
-  <Edit title={<SupplierTitle />} {...props}>
+  <Edit mutationMode="pessimistic" title={<SupplierTitle />} {...props}>
     <SimpleForm>
       <TextInput source="name" />
       <TextInput source="address" />
@@ -52,7 +56,7 @@ const SupplierPurchaseList = (props) => (
   </List>
 );
 
-export const SupplierShow = (props) => (
+const SupplierShow = (props) => (
   <Show {...props}>
     <TabbedShowLayout>
       <Tab label="summary">
@@ -82,6 +86,8 @@ const SupplierList = (props) => (
       <ReferenceField reference="accounts" source="account_id" label="Account Balance">
         <TextField source="balance" />
       </ReferenceField>
+      <EditButton />
+      <ShowButton />
     </Datagrid>
   </List>
 );
@@ -91,4 +97,5 @@ export default {
   edit: SupplierEdit,
   show: SupplierShow,
   list: SupplierList,
+  icon: SupplierIcon
 }

@@ -1,4 +1,5 @@
 import { Datagrid, DateField, EditGuesser, List, NumberField, ReferenceField, ShowGuesser, TextField } from "react-admin";
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 
 const InventoryList = props => (
@@ -25,4 +26,5 @@ export default {
     show: ShowGuesser,
     edit: EditGuesser,
     options: { label: "Inventory" },
+    icon: InventoryIcon
 }

@@ -12,6 +12,7 @@ import {
   SelectInput,
 } from "react-admin";
 
+import AccountIcon from '@material-ui/icons/LibraryBooks';
 
 
 const AccountCreate = (props) => (
@@ -54,4 +55,5 @@ export default {
   create: AccountCreate,
   edit: AccountEdit,
   list: AccountList,
+  icon: AccountIcon
 }

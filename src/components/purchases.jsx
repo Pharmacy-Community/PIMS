@@ -68,7 +68,7 @@ const PurchaseCreate = (props) => {
 const PurchaseEdit = (props) => {
   //   TODO Make form vetfical
   return (
-    <Edit title={<PurchaseTitle />} {...props}>
+    <Edit mutationMode="pessimistic" title={<PurchaseTitle />} {...props}>
       <SimpleForm>
         <DateInput source="date" />
         <TextInput source="invoice" />

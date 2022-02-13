@@ -8,6 +8,13 @@ import {
   SimpleFormIterator,
   TextField,
   TextInput,
+  ShowGuesser,
+  SimpleShowLayout,
+  ArrayField,
+  NumberField,
+  Show,
+  TabbedShowLayout,
+  Tab
 } from "react-admin";
 
 const ProductCreate = (props) => (
@@ -40,9 +47,30 @@ const ProductEdit = (props) => (
   </Edit>
 );
 
+
+const ProductShow = props => (
+  <Show {...props}>
+    <TabbedShowLayout>
+      <Tab label="Details">
+        <TextField source="name" />
+        <TextField source="generic_name" />
+        <ArrayField source="pack_sizes">
+          <Datagrid>
+            <NumberField source="units" />
+            <NumberField source="sale_price" />
+          </Datagrid>
+        </ArrayField>
+      </Tab>
+      <Tab label="Sales" path="sales">
+      </Tab>
+      <Tab label="Purchases" path="purchases"></Tab>
+    </TabbedShowLayout>
+  </Show>
+);
+
 const ProductList = (props) => (
   <List {...props}>
-    <Datagrid rowClick="edit">
+    <Datagrid rowClick="show">
       <TextField source="name" />
       <TextField source="generic_name" />
     </Datagrid>
@@ -50,8 +78,11 @@ const ProductList = (props) => (
 );
 
 
+
+
 export default {
   create: ProductCreate,
   edit: ProductEdit,
-  list: ProductList
+  list: ProductList,
+  show: ProductShow
 }

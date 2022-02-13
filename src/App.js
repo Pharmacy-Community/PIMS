@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Admin, Resource, ListGuesser, EditGuesser, ShowGuesser } from "react-admin";
+import { Admin, Resource } from "react-admin";
 import drfProvider, {
   jwtTokenAuthProvider,
   fetchJsonWithAuthJWTToken,
 } from "ra-data-django-rest-framework";
 import suppliers from "./components/suppliers";
-import purchases, { PurchaseCreate, PurchaseEdit, PurchaseList, PurchaseShow } from "./components/purchases";
+import purchases from "./components/purchases";
 import expenses from "./components/expenses";
 import customers from "./components/customers";
 import sales from "./components/sales";
