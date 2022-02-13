@@ -46,6 +46,10 @@ const ExpenseShow = props => (
 // TODO Add daterange filter, account filter, entrant filter
 const expenseFilters = [
   <TextInput source="details" label="Details" alwaysOn />,
+  <ReferenceInput source="account_id" reference="accounts" alwaysOn>
+    {/* TODO FIlter Only Expense Accounts */}
+    <SelectInput optionText="name" optionValue="id" />
+  </ReferenceInput>
 ];
 
 const ExpenseList = (props) => (
