@@ -45,11 +45,13 @@ const ExpenseShow = props => (
 
 // TODO Add daterange filter, account filter, entrant filter
 const expenseFilters = [
-  <TextInput source="details" label="Details" alwaysOn />,
+  <TextInput label="Search" source="q" alwaysOn />,
   <ReferenceInput source="account_id" reference="accounts" alwaysOn>
     {/* TODO FIlter Only Expense Accounts */}
     <SelectInput optionText="name" optionValue="id" />
-  </ReferenceInput>
+  </ReferenceInput>,
+  <DateInput source="date_after" label="Date After" options={{ format: 'DD/MM/YYYY' }} />,
+  <DateInput source="date_before" label="Date Before" options={{ format: 'DD/MM/YYYY' }} />
 ];
 
 const ExpenseList = (props) => (
