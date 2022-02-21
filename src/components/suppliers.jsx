@@ -75,7 +75,7 @@ const SupplierShow = (props) => (
   </Show>
 );
 
-const supplierFilters = [<TextInput source="name" label="Name" alwaysOn />];
+const supplierFilters = [<TextInput source="q" label="Search" alwaysOn />];
 
 const SupplierList = (props) => (
   <List filters={supplierFilters} {...props}>

@@ -87,7 +87,7 @@ const CustomerShow = (props) => (
   </Show>
 );
 
-const CustomersFilters = [<TextInput source="name" label="Name" alwaysOn />];
+const CustomersFilters = [<TextInput source="q" label="Search" alwaysOn />];
 
 const CustomersList = (props) => (
   <List filters={CustomersFilters} {...props}>

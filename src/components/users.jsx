@@ -9,9 +9,13 @@ import {
   List,
   ReferenceField,
   SimpleForm,
-  SingleFieldList,
   TextField,
   TextInput,
+  SelectArrayInput,
+  ChipField,
+  ReferenceArrayInput,
+  ReferenceArrayField,
+  SingleFieldList
 } from "react-admin";
 import UserIcon from '@material-ui/icons/People';
 
@@ -22,7 +26,11 @@ const UserCreate = (props) => (
       <TextInput source="last_name" />
       <TextInput source="username" />
       <TextInput source="email" />
-      <TextInput source="groups" />
+      <ReferenceArrayInput reference="groups" source="groups" label="Groups">
+        <SelectArrayInput>
+          <ChipField source="name" />
+        </SelectArrayInput>
+      </ReferenceArrayInput>
       <BooleanInput source="is_superuser" />
       <BooleanInput source="is_active" />
     </SimpleForm>
@@ -30,29 +38,35 @@ const UserCreate = (props) => (
 );
 
 const UserEdit = (props) => (
-  <Edit {...props}>
+  <Edit mutationMode="pessimistic" {...props}>
     <SimpleForm>
-      <TextInput source="first_name" />
-      <TextInput source="last_name" />
-      <TextInput source="groups" />
+      <TextField source="full_name" />
+      <ReferenceArrayInput reference="groups" source="groups" label="Groups">
+        <SelectArrayInput>
+          <ChipField source="name" />
+        </SelectArrayInput>
+      </ReferenceArrayInput>
       <BooleanInput source="is_active" />
       <BooleanInput source="is_superuser" />
     </SimpleForm>
   </Edit>
 );
 
+
+const UsersFilter = [
+  <TextInput label="Search" source="q" alwaysOn />
+];
+
 const UserList = (props) => (
-  <List {...props}>
+  <List filters={UsersFilter} {...props}>
     <Datagrid rowClick="edit">
-      <TextField source="first_name" />
-      <TextField source="last_name" />
-      <TextField source="username" />
+      <TextField source="full_name" />
       <EmailField source="email" />
-      <ArrayField source="groups">
+      <ReferenceArrayField source="groups" reference="groups">
         <SingleFieldList>
-          <TextField source="name" />
+          <ChipField source="name" />
         </SingleFieldList>
-      </ArrayField>
+      </ReferenceArrayField>
       <BooleanField source="is_active" />
       <BooleanField source="is_superuser" />
     </Datagrid>

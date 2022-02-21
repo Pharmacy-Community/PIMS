@@ -68,11 +68,22 @@ const ProductShow = props => (
   </Show>
 );
 
+
+const ProductsFilters = [
+  <TextInput label="Search" source="q" alwaysOn />
+]
+
 const ProductList = (props) => (
-  <List {...props}>
+  <List filters={ProductsFilters} {...props}>
     <Datagrid rowClick="show">
       <TextField source="name" />
       <TextField source="generic_name" />
+      <ArrayField source="pack_sizes">
+        <Datagrid>
+          <TextField source="units" />
+          <TextField source="sale_price" />
+        </Datagrid>
+      </ArrayField>
     </Datagrid>
   </List>
 );

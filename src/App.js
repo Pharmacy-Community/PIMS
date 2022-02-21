@@ -24,7 +24,7 @@ const authProvider = jwtTokenAuthProvider({
 const dataProvider = drfProvider(apiBaseUrl, fetchJsonWithAuthJWTToken);
 
 const App = () => (
-  <Admin dataProvider={dataProvider} authProvider={authProvider}>
+  <Admin dataProvider={dataProvider} authProvider={authProvider} disableTelemetry>
     <Resource name="sales" {...sales} />
     <Resource name="customers" {...customers} />
     <Resource name="purchases" {...purchases} />

@@ -10,6 +10,7 @@ import {
   NumberInput,
   Field,
   SelectInput,
+  ReferenceInput,
 } from "react-admin";
 
 import AccountIcon from '@material-ui/icons/LibraryBooks';
@@ -40,8 +41,29 @@ const AccountEdit = (props) => (
   </Edit>
 );
 
+
+export const AccountCategoriesFilter = <SelectInput source="category" choices={[
+  { id: 'SUPPLIER', name: 'SUPPLIER ACCOUNTS' },
+  { id: 'CUSTOMER', name: 'CUSTOMER ACCOUNTS' },
+  { id: 'CASH', name: 'CASH ACCOUNTS' },
+  { id: 'BANK', name: 'BANK ACCOUNTS' },
+  { id: 'MOBILE MONEY', name: 'MOBILE MONEY ACCOUNTS' },
+]} alwaysOn />;
+
+export const FilterByAccountFilter =
+  <ReferenceInput label="Account" source="account_id" reference="accounts" alwaysOn>
+    <SelectInput optionText="name" optionValue="id" />
+  </ReferenceInput>;
+
+
+
+const AccountListFilters = [
+  <TextInput source="q" label="Search" alwaysOn />,
+  AccountCategoriesFilter
+]
+
 const AccountList = (props) => (
-  <List {...props}>
+  <List filters={AccountListFilters} {...props}>
     <Datagrid rowClick="edit">
       <TextField source="name" />
       <TextField source="category" />
