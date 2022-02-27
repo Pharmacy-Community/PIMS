@@ -1,9 +1,5 @@
 import * as React from "react";
 import { Admin, Resource } from "react-admin";
-import drfProvider, {
-  jwtTokenAuthProvider,
-  fetchJsonWithAuthJWTToken,
-} from "ra-data-django-rest-framework";
 import suppliers from "./components/suppliers";
 import purchases from "./components/purchases";
 import expenses from "./components/expenses";
@@ -15,13 +11,8 @@ import groups from "./components/groups";
 import users from "./components/users";
 import inventory from "./components/inventory";
 
-const apiBaseUrl = "http://localhost:7000";
+import dataProvider, { authProvider } from "./components/utils";
 
-// TODO Add Auth provider
-const authProvider = jwtTokenAuthProvider({
-  obtainAuthTokenUrl: `${apiBaseUrl}/auth/jwt/create/`,
-});
-const dataProvider = drfProvider(apiBaseUrl, fetchJsonWithAuthJWTToken);
 
 const App = () => (
   <Admin dataProvider={dataProvider} authProvider={authProvider} disableTelemetry>

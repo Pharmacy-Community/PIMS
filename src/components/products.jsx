@@ -1,3 +1,5 @@
+import React, { Component } from 'react';
+
 import {
   ArrayInput,
   Create,
@@ -74,18 +76,31 @@ const ProductsFilters = [
 ]
 
 const ProductList = (props) => (
-  <List filters={ProductsFilters} {...props}>
-    <Datagrid rowClick="show">
-      <TextField source="name" />
-      <TextField source="generic_name" />
-      <ArrayField source="pack_sizes">
-        <Datagrid>
-          <TextField source="units" />
-          <TextField source="sale_price" />
-        </Datagrid>
-      </ArrayField>
-    </Datagrid>
-  </List>
+  <React.Fragment>
+
+    <List filters={ProductsFilters} {...props}>
+      <Datagrid rowClick="show">
+        <TextField source="name" />
+        <TextField source="generic_name" />
+        <ArrayField source="pack_sizes">
+          <Datagrid>
+            <TextField source="units" />
+            <TextField source="sale_price" />
+          </Datagrid>
+        </ArrayField>
+      </Datagrid>
+    </List>
+
+    <Route
+      path="/tags/create"
+      render={() => (
+        <TagCreate {...props} />
+      )}
+    />
+
+
+  </React.Fragment>
+
 );
 
 

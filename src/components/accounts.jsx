@@ -14,7 +14,8 @@ import {
 } from "react-admin";
 
 import AccountIcon from '@material-ui/icons/LibraryBooks';
-
+import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 const AccountCreate = (props) => (
   <Create {...props}>
@@ -40,6 +41,25 @@ const AccountEdit = (props) => (
     </SimpleForm>
   </Edit>
 );
+
+
+
+
+export const LinkToRelatedAccount = ({ record }) => {
+  let account = record.account
+  return account ? (
+    <Button
+      color="primary"
+      component={Link}
+      to={{
+        pathname: '/accounts',
+        search: `filter=${JSON.stringify({ account_id: account.id })}`,
+      }}
+    >
+      Account {account.name} ;
+    </Button>
+  ) : null;
+};
 
 
 export const AccountCategoriesFilter = <SelectInput source="category" choices={[
